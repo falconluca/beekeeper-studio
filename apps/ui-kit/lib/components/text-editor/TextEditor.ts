@@ -185,6 +185,11 @@ export class TextEditor {
     applyLineGutters(this.view, lineGutters);
   }
 
+  setFontSize(fontSize: number) {
+    const size = fontSize + 'px';
+    this.view.dom.style.setProperty('--bks-text-editor-font-size', size);
+  }
+
   getSelection(): string {
     return this.view.state.sliceDoc(this.view.state.selection.main.from, this.view.state.selection.main.to);
   }

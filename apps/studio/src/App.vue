@@ -40,6 +40,7 @@
     <confirmation-modal-manager />
     <lock-manager />
     <util-died-modal />
+    <editor-settings-modal />
     <template v-if="licensesInitialized">
       <trial-expired-modal />
       <license-expired-modal />
@@ -83,6 +84,7 @@ import { SmartLocalStorage } from '@/common/LocalStorage';
 import PluginManagerModal from '@/components/plugins/PluginManagerModal.vue'
 import PluginController from '@/components/plugins/PluginController.vue'
 import LockManager from "@/components/managers/LockManager.vue";
+import EditorSettingsModal from '@/components/EditorSettingsModal.vue';
 
 import rawLog from '@bksLogger'
 import { assignContextMenuToAllInputs } from './mixins/assignContextMenuToAllInputs'
@@ -99,6 +101,7 @@ export default Vue.extend({
     EnterLicenseModal, TrialExpiredModal, LicenseExpiredModal,
     LifetimeLicenseExpiredModal, WorkspaceCreateModal, WorkspaceRenameModal,
     PluginManagerModal, ConfigurationWarningModal, PluginController, LockManager,
+    EditorSettingsModal,
   },
   data() {
     return {

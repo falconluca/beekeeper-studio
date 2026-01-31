@@ -83,7 +83,10 @@ export default {
       if (!this.textEditor) return;
       this.applyUnfoldAll();
     },
-
+    fontSize() {
+      if (!this.textEditor) return;
+      this.applyFontSize();
+    },
     forceInitialize() {
       this.initialize();
     },
@@ -135,6 +138,9 @@ export default {
     applyUnfoldAll() {
       this.textEditor.unfoldAll();
     },
+    applyFontSize() {
+      this.textEditor.setFontSize(this.fontSize);
+    },
 
     constructTextEditor() {
       return new TextEditor();
@@ -184,6 +190,9 @@ export default {
       this.textEditor = textEditor;
 
       this.initialized?.();
+
+      // Apply initial font size
+      this.applyFontSize();
 
       this.$emit("bks-initialized", { editor: textEditor } as TextEditorInitializedEvent['detail']);
     },

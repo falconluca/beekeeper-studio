@@ -29,6 +29,14 @@
     </a>
     <span class="expand" />
     <core-account-button v-if="$store.state.workspaceId > 0" />
+    <a
+      href=""
+      @click.prevent="openSettings"
+      class="nav-item settings"
+      title="Editor Settings"
+    >
+      <span class="material-icons">settings</span>
+    </a>
   </div>
 </template>
 
@@ -37,5 +45,10 @@
   export default {
     props: ['activeItem'],
     components: { CoreAccountButton },
+    methods: {
+      openSettings() {
+        this.$modal.show('editor-settings-modal')
+      }
+    }
   }
 </script>

@@ -111,6 +111,10 @@ const SettingStoreModule: Module<State, any> = {
     sqliteRuntimeExtensions(state) {
       if (!state.settings.sqliteExtensionFile) return null
       return state.settings.sqliteExtensionFile
+    },
+    editorFontSize(state) {
+      if (!state.settings.editorFontSize) return 14
+      return state.settings.editorFontSize.value as number
     }
   }
 }

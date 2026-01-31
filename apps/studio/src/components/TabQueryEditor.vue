@@ -55,6 +55,7 @@
         :formatter-config="selectedFormatter ?? undefined"
         :allow-presets="true"
         :presets="formatterPresets"
+        :font-size="editorFontSize"
         @bks-initialized="handleEditorInitialized"
         @bks-value-change="unsavedText = $event.value"
         @bks-selection-change="handleEditorSelectionChange"
@@ -606,6 +607,7 @@
       ...mapGetters({
         'isCommunity': 'licenses/isCommunity',
         'userKeymap': 'settings/userKeymap',
+        'editorFontSize': 'settings/editorFontSize',
       }),
       ...mapState(['usedConfig', 'connectionType', 'database', 'tables', 'storeInitialized', 'connection']),
       ...mapState('data/queries', {'savedQueries': 'items'}),
