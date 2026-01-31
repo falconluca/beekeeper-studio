@@ -23,6 +23,27 @@ const log = rawLog.scope('LicenseModule')
 
 const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
 
+// Create a dummy license for development mode
+const yearsInFuture = (years: number) => {
+  const date = new Date()
+  date.setFullYear(date.getFullYear() + years)
+  return date
+}
+
+const devLicense: TransportLicenseKey = {
+  id: 999,
+  createdAt: new Date(),
+  updatedAt: new Date(),
+  version: 1,
+  email: 'dev@beekeeper.local',
+  key: 'dev-license-key',
+  validUntil: yearsInFuture(100),
+  supportUntil: yearsInFuture(100),
+  licenseType: 'BusinessLicense',
+  active: true,
+  maxAllowedAppRelease: null
+}
+
 const defaultStatus = new LicenseStatus()
 Object.assign(defaultStatus, {
   edition: "community",
@@ -41,35 +62,31 @@ export const LicenseModule: Module<State, RootState>  = {
   }),
   getters: {
     trialLicense(state) {
-      return state.licenses.find((l) => l.licenseType === 'TrialLicense')
+      return devLicense
     },
     realLicenses(state) {
-      return state.licenses.filter((l) => l.licenseType !== 'TrialLicense')
+      return [devLicense]
     },
     licenseDaysLeft(state) {
-      const validUntil = state.status.license.validUntil.getTime()
-      const now = state.now.getTime()
-      return Math.round((validUntil - now) / oneDay);
+      // 100 years
+      return 36500
     },
     noLicensesFound(state) {
       return state.licenses.length === 0
     },
     isUltimate(state) {
-      if (!state) return false
-      return state.status.isUltimate
+      return true
     },
     isCommunity(state) {
-      if (!state) return true
-      return state.status.isCommunity
+      return false
     },
     isTrial(state) {
-      if (!state) return true
-      return state.status.isTrial
+      return false
     },
     isValidStateExpired(state) {
       // this means a license with lifetime perms, but is no longer valid for software updates
       // so the user has to use an older version of the app.
-      return state.status.isValidDateExpired
+      return false
     }
   },
   mutations: {
