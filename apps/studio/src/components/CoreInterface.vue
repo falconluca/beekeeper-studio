@@ -97,7 +97,8 @@
       ]),
       keymap() {
         const result = this.$vHotkeyKeymap({
-          'general.openQuickSearch': this.showQuickSearch
+          'general.openQuickSearch': this.showQuickSearch,
+          'general.togglePrimarySidebar': this.handleToggleOpenPrimarySidebar
         });
         return result;
       },

@@ -139,7 +139,6 @@ module.exports = {
     icon: './public/icons/mac/bk-icon.icns',
     category: "public.app-category.developer-tools",
     "hardenedRuntime": true,
-    // Disable code signing for local development builds
     notarize: true,
     publish: ['github']
   },
