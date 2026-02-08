@@ -73,11 +73,6 @@ export default {
   },
   /** Enable fold gutter. */
   foldGutters: Boolean,
-  /** Font size for the editor in pixels. Default is 14. */
-  fontSize: {
-    type: Number,
-    default: 14,
-  },
   // cursor: String,
   // initialized: Boolean,
   // autoFocus: Boolean,
